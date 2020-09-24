@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Typicode avec vueJS</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="typi.js" defer></script>
+    <style>
+        body{
+            background-color: rgb(255, 254, 220);
+            color: rgb(85, 85, 85);
+            font-family: 'Gill Sans', sans-serif;
+            text-align: center;
+        }
+        ul{
+            text-align: left;
+        }
+        .albumFotos{
+            width: 80%;
+        }
+        .taskDone{
+            color: green;
+            text-decoration-line: line-through;
+        }
+        .taskToDo{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Typicode avec Vuejs</h1>
+    <hr>
+    <div id="app">
+        <h2>Liste des utilisateurs</h2>
+        <p>Il y a {{listUsers.length}} utilisateurs inscrits dans l'application</p>
+        <select id="userSelect" v-on:change="updateProfile($event.target.value)">
+            <option value=""> Veuillez sélectionner un utilisateur </option>
+            <option v-for="user of listUsers" v-bind:value="user.id">{{ user.name }}</option>
+        </select>
+        <profile v-bind:user="user" v-if="user.id>0"></profile>
+        <hr>
+        <to-do-list v-bind:user-id="user.id"></to-do-list>
+        <button v-on:click="showAlbums()" v-if="user.id>0">Afficher les albums</button>
+        <albums v-if="user.id>0" v-bind:albums-user="albums"></albums>
+        <button v-on:click="showPosts()" v-if="user.id>0">Afficher les articles</button>
+        <posts v-if="user.id>0" v-bind:posts-user="posts"></posts>
+        
+    </div>
+</body>
+
+</html>
