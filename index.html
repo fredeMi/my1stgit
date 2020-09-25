@@ -38,7 +38,7 @@
         <h2>La liste des utilisateurs</h2>
         <p>Il y a {{listUsers.length}} utilisateurs inscrits dans l'application</p>
         <select id="userSelect" v-on:change="updateProfile($event.target.value)">
-            <option value=""> Veuillez sélectionner un utilisateur </option>
+            <option value=""> Vous pouvez sélectionner un utilisateur </option>
             <option v-for="user of listUsers" v-bind:value="user.id">{{ user.name }}</option>
         </select>
         <profile v-bind:user="user" v-if="user.id>0"></profile>
